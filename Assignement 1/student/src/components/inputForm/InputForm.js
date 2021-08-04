@@ -8,25 +8,20 @@ import DialogTitle from '@material-ui/core/DialogTitle';
 import useMediaQuery from '@material-ui/core/useMediaQuery';
 import { useTheme } from '@material-ui/core/styles';
 import AddCircleIcon from '@material-ui/icons/AddCircle';
+import useInputForm from './useInputForm';
+import TextField from '@material-ui/core/TextField';
 
 
 export default function InputForm() {
-  const [open, setOpen] = React.useState(false);
+  const [handleClickOpen, handleClose, open] = useInputForm();
   const theme = useTheme();
   const fullScreen = useMediaQuery(theme.breakpoints.down('sm'));
 
-  const handleClickOpen = () => {
-    setOpen(true);
-  };
-
-  const handleClose = () => {
-    setOpen(false);
-  };
 
   return (
     <div>
-      <div style={{cursor:"pointer"}} onClick={handleClickOpen}>
-        <AddCircleIcon/>
+      <div style={{ cursor: "pointer" }} onClick={handleClickOpen}>
+        <AddCircleIcon />
       </div>
       <Dialog
         fullScreen={fullScreen}
@@ -34,19 +29,34 @@ export default function InputForm() {
         onClose={handleClose}
         aria-labelledby="responsive-dialog-title"
       >
-        <DialogTitle id="responsive-dialog-title">{"Use Google's location service?"}</DialogTitle>
+        <DialogTitle id="responsive-dialog-title">{"Add Attandent"}</DialogTitle>
         <DialogContent>
-          <DialogContentText>
-            Let Google help apps determine location. This means sending anonymous location data to
-            Google, even when no apps are running.
-          </DialogContentText>
+          <form>
+            <TextField id="standard-basic" label="Name" />
+            <TextField id="standard-basic" label="Class" />
+            <select style={{
+              background: "transparent",
+              border: "none", fontSize: "15px",
+              marginTop: "20px",
+              borderBottom: "ridge",
+              padding: "3px",
+              color:"#3F51B5"
+            }}>
+              <option>Select Role</option>
+              <option>Lecturer</option>
+              <option>Admin</option>
+              <option>Moderate</option>
+              <option>Student</option>
+            </select>
+          </form>
         </DialogContent>
         <DialogActions>
+
           <Button autoFocus onClick={handleClose} color="primary">
-            Disagree
+            Cancel
           </Button>
           <Button onClick={handleClose} color="primary" autoFocus>
-            Agree
+            Add
           </Button>
         </DialogActions>
       </Dialog>

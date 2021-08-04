@@ -7,25 +7,18 @@ import DialogContentText from '@material-ui/core/DialogContentText';
 import DialogTitle from '@material-ui/core/DialogTitle';
 import useMediaQuery from '@material-ui/core/useMediaQuery';
 import { useTheme } from '@material-ui/core/styles';
-
+import { List } from "../list/List"
+import useEdit from './useEdit';
 
 export default function Edit({ item }) {
-    const [open, setOpen] = React.useState(false);
     const theme = useTheme();
     const fullScreen = useMediaQuery(theme.breakpoints.down('sm'));
-
-    const handleClickOpen = () => {
-        setOpen(true);
-    };
-
-    const handleClose = () => {
-        setOpen(false);
-    };
+    const [handleClickOpen, handleClose, open] = useEdit();       
 
 
     return (
         <>
-            <Button onClick={()=>{alert(item.id); handleClickOpen()}} color="primary">Edit</Button>
+            <Button onClick={() => { handleClickOpen() }} color="primary">Edit</Button>
 
             <Dialog
                 fullScreen={fullScreen}
@@ -33,19 +26,30 @@ export default function Edit({ item }) {
                 onClose={handleClose}
                 aria-labelledby="responsive-dialog-title"
             >
-                <DialogTitle id="responsive-dialog-title">{"Use Google's location service?"}</DialogTitle>
+                <DialogTitle id="responsive-dialog-title">{"Attendent"}</DialogTitle>
                 <DialogContent>
-                    <DialogContentText>
-                        Let Google help apps determine location. This means sending anonymous location data to
-                        Google, even when no apps are running.
-                    </DialogContentText>
+                    {List.map((idItem) => {
+                        if (idItem.id === item.id) {
+                            return (
+                                <>
+                                <DialogContentText>Name: {item.name}</DialogContentText>
+                                <DialogContentText>Class: {item.class}</DialogContentText>
+                                <DialogContentText>Role: {item.role}</DialogContentText>
+                                </>
+                            )
+                        }
+                    })
+                    }
                 </DialogContent>
                 <DialogActions>
                     <Button autoFocus onClick={handleClose} color="primary">
-                        Disagree
+                        Delete
                     </Button>
                     <Button onClick={handleClose} color="primary" autoFocus>
-                        Agree
+                        Update
+                    </Button>
+                    <Button onClick={handleClose} color="primary" autoFocus>
+                        Cancel
                     </Button>
                 </DialogActions>
             </Dialog>
