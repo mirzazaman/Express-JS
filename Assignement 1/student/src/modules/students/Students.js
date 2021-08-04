@@ -13,6 +13,7 @@ export default function Students() {
                 <Header />
 
             </div>
+            <hr />
             <div>
                 <MainTable />
             </div>

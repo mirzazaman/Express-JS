@@ -10,7 +10,7 @@ import { useTheme } from '@material-ui/core/styles';
 import AddCircleIcon from '@material-ui/icons/AddCircle';
 
 
-export default function ResponsiveDialog() {
+export default function InputForm() {
   const [open, setOpen] = React.useState(false);
   const theme = useTheme();
   const fullScreen = useMediaQuery(theme.breakpoints.down('sm'));

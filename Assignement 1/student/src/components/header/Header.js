@@ -3,8 +3,7 @@ import { makeStyles } from '@material-ui/core/styles';
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
-import IconButton from '@material-ui/core/IconButton';
-import ResponsiveDialog from '../dialog/Dialog';
+import InputForm from '../inputForm/InputForm';
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -23,10 +22,10 @@ export default function Header() {
             <AppBar position="static">
                 <Toolbar style={{ display: "flex", justifyContent: "space-between" }} variant="dense">
                     <Typography variant="h6" color="inherit">
-                        Students List
+                        Attendants List
                     </Typography>
 
-                    <ResponsiveDialog/>
+                    <InputForm />
 
                 </Toolbar>
             </AppBar>
