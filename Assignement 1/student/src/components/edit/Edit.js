@@ -13,7 +13,7 @@ import useEdit from './useEdit';
 export default function Edit({ item }) {
     const theme = useTheme();
     const fullScreen = useMediaQuery(theme.breakpoints.down('sm'));
-    const [handleClickOpen, handleClose, open] = useEdit();       
+    const [handleClickOpen, handleClose, open, updateHandler] = useEdit();       
 
 
     return (
@@ -45,7 +45,7 @@ export default function Edit({ item }) {
                     <Button autoFocus onClick={handleClose} color="primary">
                         Delete
                     </Button>
-                    <Button onClick={handleClose} color="primary" autoFocus>
+                    <Button onClick={updateHandler} color="primary" autoFocus>
                         Update
                     </Button>
                     <Button onClick={handleClose} color="primary" autoFocus>

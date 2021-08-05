@@ -12,6 +12,10 @@ export default function useEdit() {
         setOpen(false);
     };
 
+    const updateHandler = () =>{
+        handleClose()
+    }
 
-    return [handleClickOpen, handleClose, open]
+
+    return [handleClickOpen, handleClose, open, updateHandler]
 }
