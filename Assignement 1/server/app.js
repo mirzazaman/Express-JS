@@ -14,9 +14,10 @@ app.get('/', (req, res)=>{
 })
 
 app.post('/', (req, res)=>{
-    
+
     // console.log(req.body);
-    res.send(`Name is ${req.body.name}`)
+    res.send(`Name is ${req.body.name} My Role is ${req.body.role}`)
+
 })
 
 app.listen(5000, ()=>{

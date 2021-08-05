@@ -32,9 +32,9 @@ export default function Edit({ item }) {
                         if (idItem.id === item.id) {
                             return (
                                 <>
-                                <DialogContentText>Name: {item.name}</DialogContentText>
-                                <DialogContentText>Class: {item.class}</DialogContentText>
-                                <DialogContentText>Role: {item.role}</DialogContentText>
+                                <DialogContentText>Name: {idItem.name}</DialogContentText>
+                                <DialogContentText>Class: {idItem.class}</DialogContentText>
+                                <DialogContentText>Role: {idItem.role}</DialogContentText>
                                 </>
                             )
                         }

@@ -3,7 +3,6 @@ import Button from '@material-ui/core/Button';
 import Dialog from '@material-ui/core/Dialog';
 import DialogActions from '@material-ui/core/DialogActions';
 import DialogContent from '@material-ui/core/DialogContent';
-import DialogContentText from '@material-ui/core/DialogContentText';
 import DialogTitle from '@material-ui/core/DialogTitle';
 import useMediaQuery from '@material-ui/core/useMediaQuery';
 import { useTheme } from '@material-ui/core/styles';
@@ -13,7 +12,7 @@ import TextField from '@material-ui/core/TextField';
 
 
 export default function InputForm() {
-  const [handleClickOpen, handleClose, open] = useInputForm();
+  const [handleClickOpen, handleClose, open, setName, setStuClass, setRole, inputHandler] = useInputForm();
   const theme = useTheme();
   const fullScreen = useMediaQuery(theme.breakpoints.down('sm'));
 
@@ -32,8 +31,8 @@ export default function InputForm() {
         <DialogTitle id="responsive-dialog-title">{"Add Attandent"}</DialogTitle>
         <DialogContent>
           <form>
-            <TextField id="standard-basic" label="Name" />
-            <TextField id="standard-basic" label="Class" />
+            <TextField id="standard-basic" label="Name" onChange={(e)=>{setName(e.target.value)}}/>
+            <TextField id="standard-basic" label="Class" onChange={(e)=>{setStuClass(e.target.value)}}/>
             <select style={{
               background: "transparent",
               border: "none", fontSize: "15px",
@@ -41,7 +40,7 @@ export default function InputForm() {
               borderBottom: "ridge",
               padding: "3px",
               color:"#3F51B5"
-            }}>
+            }} onChange={(e)=>{setRole(e.target.value)}}>
               <option>Select Role</option>
               <option>Lecturer</option>
               <option>Admin</option>
@@ -55,7 +54,7 @@ export default function InputForm() {
           <Button autoFocus onClick={handleClose} color="primary">
             Cancel
           </Button>
-          <Button onClick={handleClose} color="primary" autoFocus>
+          <Button onClick={()=>{inputHandler()}} color="primary" autoFocus>
             Add
           </Button>
         </DialogActions>
