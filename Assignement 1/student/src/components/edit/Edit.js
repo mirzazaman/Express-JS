@@ -34,7 +34,7 @@ export default function Edit({ item }) {
                             return (
                                 <>
                                 <DialogContentText>Name: {idItem.name}</DialogContentText>
-                                <DialogContentText>Class: {idItem.class}</DialogContentText>
+                                <DialogContentText>Class: {idItem.stuClass}</DialogContentText>
                                 <DialogContentText>Role: {idItem.role}</DialogContentText>
                                 </>
                             )

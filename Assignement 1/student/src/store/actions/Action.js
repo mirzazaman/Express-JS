@@ -20,11 +20,18 @@ export const GetData = (setTableLoading) => async (dispatch) => {
 }
 
 export const AddData = (data) => async (dispatch) => {
+    try {
+        await axios.post('http://localhost:5000/', data)
 
-    dispatch({
-        type: ADD_DATA,
-        payload: data
-    })
+        dispatch({
+            type: ADD_DATA,
+            payload: data
+        })
+    
+    } catch (error) {
+        console.log("Error", error.message);
+    }
+
 }
 
 export const UpdateData = (data) => async (dispatch) => {

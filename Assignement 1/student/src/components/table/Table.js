@@ -25,7 +25,6 @@ export default function MainTable() {
   const [tableLoading] = useTable()
   const classes = useStyles();
   const List = useSelector(store => store.newState)
-  console.log("Table", List);
 
   return (
     <Paper className={classes.root}>
@@ -44,9 +43,9 @@ export default function MainTable() {
               return(
                 <TableRow>
                   <TableCell>{item.name}</TableCell>
-                  <TableCell>{item.class}</TableCell>
+                  <TableCell>{item.stuClass}</TableCell>
                   <TableCell>{item.role}</TableCell>
-                  <TableCell><Edit item={item}/></TableCell>
+                  <TableCell> <Edit item={item}/>  </TableCell>
                 </TableRow>
               )
             })}

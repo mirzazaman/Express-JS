@@ -7,16 +7,17 @@ let initialState = {
 export default function Reducer(state = initialState, action) {
     switch (action.type) {
         case GET_DATA:
-            console.log("Get Reducer", action.payload);
             return {
                 ...state,
                 newState: action.payload.data
             };
+
         case ADD_DATA:
             return {
                 ...state,
-                newState:[...state, action.payload]
+                newState: [...state.newState, action.payload]
             };
+   
         case UPDATE_DATA:
             return {
                 ...state,
