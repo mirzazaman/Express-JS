@@ -7,10 +7,11 @@ import DialogContentText from '@material-ui/core/DialogContentText';
 import DialogTitle from '@material-ui/core/DialogTitle';
 import useMediaQuery from '@material-ui/core/useMediaQuery';
 import { useTheme } from '@material-ui/core/styles';
-import { List } from "../list/List"
 import useEdit from './useEdit';
+import { useSelector } from 'react-redux';
 
 export default function Edit({ item }) {
+    const List = useSelector(store => store.newState)
     const theme = useTheme();
     const fullScreen = useMediaQuery(theme.breakpoints.down('sm'));
     const [handleClickOpen, handleClose, open, updateHandler] = useEdit();       

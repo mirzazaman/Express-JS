@@ -11,9 +11,7 @@ export default function Students() {
         <>
             <div>
                 <Header />
-
             </div>
-            <hr />
             <div>
                 <MainTable />
             </div>

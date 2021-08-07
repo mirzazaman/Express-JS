@@ -1,11 +1,22 @@
 import { ADD_DATA, DELETE_DATA, GET_DATA, UPDATE_DATA } from "../../constants/Types"
+import axios from "axios"
 
-export const GetData = (data) => async (dispatch) => {
+export const GetData = (setTableLoading) => async (dispatch) => {
+    try {
+        setTableLoading(true)
+        let data = await axios.get('http://localhost:5000/')
+        
+        dispatch({
+            type: GET_DATA,
+            payload: data
+        })
 
-    dispatch({
-        type: GET_DATA,
-        payload: data
-    })
+    } catch (error) {
+        console.log("Error", error.message);        
+    
+    } finally{
+        setTableLoading(false)
+    }
 }
 
 export const AddData = (data) => async (dispatch) => {

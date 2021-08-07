@@ -1,15 +1,16 @@
 import { ADD_DATA, DELETE_DATA, GET_DATA, UPDATE_DATA } from '../../constants/Types';
 
 let initialState = {
-    newState=[]
+    newState: []
 }
 
 export default function Reducer(state = initialState, action) {
     switch (action.type) {
         case GET_DATA:
+            console.log("Get Reducer", action.payload);
             return {
                 ...state,
-                newState: action.payload
+                newState: action.payload.data
             };
         case ADD_DATA:
             return {

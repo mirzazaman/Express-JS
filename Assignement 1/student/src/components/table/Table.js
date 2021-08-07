@@ -8,8 +8,8 @@ import TableContainer from '@material-ui/core/TableContainer';
 import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
 import Edit from '../edit/Edit';
-import { List } from '../list/List'
-
+import { useSelector } from 'react-redux';
+import useTable from './useTable';
 
 const useStyles = makeStyles({
   root: {
@@ -22,7 +22,10 @@ const useStyles = makeStyles({
 });
 
 export default function MainTable() {
+  const [tableLoading] = useTable()
   const classes = useStyles();
+  const List = useSelector(store => store.newState)
+  console.log("Table", List);
 
   return (
     <Paper className={classes.root}>
@@ -50,6 +53,7 @@ export default function MainTable() {
           </TableBody>
         </Table>
       </TableContainer>
+            {tableLoading ? <div><center>Loading...</center></div> : null}
     </Paper>
   );
 }

@@ -1,4 +1,4 @@
-export const List = [
+module.exports= [
     {
         id: Math.random() * 6000,
         name: "Naveed",
