@@ -14,7 +14,7 @@ export default function Edit({ item }) {
     const List = useSelector(store => store.newState)
     const theme = useTheme();
     const fullScreen = useMediaQuery(theme.breakpoints.down('sm'));
-    const [handleClickOpen, handleClose, open, updateHandler] = useEdit();       
+    const [handleClickOpen, handleClose, open, updateHandler, deleteHandler] = useEdit();
 
 
     return (
@@ -33,26 +33,26 @@ export default function Edit({ item }) {
                         if (idItem.id === item.id) {
                             return (
                                 <>
-                                <DialogContentText>Name: {idItem.name}</DialogContentText>
-                                <DialogContentText>Class: {idItem.stuClass}</DialogContentText>
-                                <DialogContentText>Role: {idItem.role}</DialogContentText>
+                                    <DialogContentText>Name: {idItem.name}</DialogContentText>
+                                    <DialogContentText>Class: {idItem.stuClass}</DialogContentText>
+                                    <DialogContentText>Role: {idItem.role}</DialogContentText>
+                                    <DialogActions>
+                                        <Button autoFocus onClick={()=>{deleteHandler(idItem.id)}} color="primary">
+                                            Delete
+                                        </Button>
+                                        <Button onClick={()=>{updateHandler(idItem.id)}} color="primary" autoFocus>
+                                            Update
+                                        </Button>
+                                        <Button onClick={handleClose} color="primary" autoFocus>
+                                            Cancel
+                                        </Button>
+                                    </DialogActions>
                                 </>
                             )
                         }
                     })
                     }
                 </DialogContent>
-                <DialogActions>
-                    <Button autoFocus onClick={handleClose} color="primary">
-                        Delete
-                    </Button>
-                    <Button onClick={updateHandler} color="primary" autoFocus>
-                        Update
-                    </Button>
-                    <Button onClick={handleClose} color="primary" autoFocus>
-                        Cancel
-                    </Button>
-                </DialogActions>
             </Dialog>
         </>
     );
