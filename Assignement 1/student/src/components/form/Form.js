@@ -7,12 +7,12 @@ import DialogTitle from '@material-ui/core/DialogTitle';
 import useMediaQuery from '@material-ui/core/useMediaQuery';
 import { useTheme } from '@material-ui/core/styles';
 import AddCircleIcon from '@material-ui/icons/AddCircle';
-import useInputForm from './useInputForm';
+import useForm from './useForm';
 import TextField from '@material-ui/core/TextField';
 
 
-export default function InputForm() {
-  const [handleClickOpen, handleClose, open, setName, setStuClass, setRole, inputHandler] = useInputForm();
+export default function Form() {
+  const [handleClickOpen, handleClose, openCloseState, setName, setStuClass, setRole, updateHandler, inputHandler, flagState] = useForm();
   const theme = useTheme();
   const fullScreen = useMediaQuery(theme.breakpoints.down('sm'));
 
@@ -24,23 +24,26 @@ export default function InputForm() {
       </div>
       <Dialog
         fullScreen={fullScreen}
-        open={open}
+        open={openCloseState}
         onClose={handleClose}
         aria-labelledby="responsive-dialog-title"
       >
-        <DialogTitle id="responsive-dialog-title">{"Add Attandent"}</DialogTitle>
+        {
+          flagState ? <DialogTitle id="responsive-dialog-title">{"Update Attandent"}</DialogTitle> :
+            <DialogTitle id="responsive-dialog-title">{"Add Attandent"}</DialogTitle>
+        }
         <DialogContent>
           <form>
-            <TextField id="standard-basic" label="Name" onChange={(e)=>{setName(e.target.value)}}/>
-            <TextField id="standard-basic" label="Class" onChange={(e)=>{setStuClass(e.target.value)}}/>
+            <TextField id="standard-basic" label="Name" onChange={(e) => { setName(e.target.value) }} />
+            <TextField id="standard-basic" label="Class" onChange={(e) => { setStuClass(e.target.value) }} />
             <select style={{
               background: "transparent",
               border: "none", fontSize: "15px",
               marginTop: "20px",
               borderBottom: "ridge",
               padding: "3px",
-              color:"#3F51B5"
-            }} onChange={(e)=>{setRole(e.target.value)}}>
+              color: "#3F51B5"
+            }} onChange={(e) => { setRole(e.target.value) }}>
               <option>Select Role</option>
               <option>Lecturer</option>
               <option>Admin</option>
@@ -54,9 +57,10 @@ export default function InputForm() {
           <Button autoFocus onClick={handleClose} color="primary">
             Cancel
           </Button>
-          <Button onClick={()=>{inputHandler()}} color="primary" autoFocus>
-            Add
-          </Button>
+          {
+            flagState ? <Button onClick={() => { updateHandler() }} color="primary" autoFocus> Update </Button> :
+              <Button onClick={() => { inputHandler() }} color="primary" > Add </Button>
+          }
         </DialogActions>
       </Dialog>
     </div>

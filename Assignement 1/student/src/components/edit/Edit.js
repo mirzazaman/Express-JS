@@ -10,11 +10,12 @@ import { useTheme } from '@material-ui/core/styles';
 import useEdit from './useEdit';
 import { useSelector } from 'react-redux';
 
+
 export default function Edit({ item }) {
     const List = useSelector(store => store.newState)
     const theme = useTheme();
     const fullScreen = useMediaQuery(theme.breakpoints.down('sm'));
-    const [handleClickOpen, handleClose, open, updateHandler, deleteHandler] = useEdit();
+    const [handleClickOpen, handleClose, open, updateForm, deleteHandler] = useEdit();
 
 
     return (
@@ -33,16 +34,18 @@ export default function Edit({ item }) {
                         if (idItem.id === item.id) {
                             return (
                                 <>
-                                    <DialogContentText>Name: {idItem.name}</DialogContentText>
-                                    <DialogContentText>Class: {idItem.stuClass}</DialogContentText>
-                                    <DialogContentText>Role: {idItem.role}</DialogContentText>
+                                    <DialogContentText><b>Name: </b>{idItem.name}</DialogContentText>
+                                    <DialogContentText><b>Class: </b>{idItem.stuClass}</DialogContentText>
+                                    <DialogContentText><b>Role: </b>{idItem.role}</DialogContentText>
                                     <DialogActions>
-                                        <Button autoFocus onClick={()=>{deleteHandler(idItem.id)}} color="primary">
+                                        <Button autoFocus onClick={() => { deleteHandler(idItem.id) }} color="primary">
                                             Delete
                                         </Button>
-                                        <Button onClick={()=>{updateHandler(idItem.id)}} color="primary" autoFocus>
+
+                                        <Button autoFocus onClick={() => { updateForm(idItem.id) }} color="primary">
                                             Update
                                         </Button>
+
                                         <Button onClick={handleClose} color="primary" autoFocus>
                                             Cancel
                                         </Button>

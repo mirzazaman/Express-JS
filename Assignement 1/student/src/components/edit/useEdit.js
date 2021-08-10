@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import { useDispatch } from 'react-redux';
-import { DeleteData } from '../../store/actions/Action'
+import { DeleteData, Form } from '../../store/actions/Action'
 
 export default function useEdit() {
     const [open, setOpen] = useState(false);
@@ -14,7 +14,15 @@ export default function useEdit() {
         setOpen(false);
     };
 
-    const updateHandler = (ID) => {
+    const updateForm = () => {
+        let states = {
+            formOpenState: true,
+            flagState: true
+        }
+        dispatch(
+            Form(states)
+        )
+
         // alert(ID)
         handleClose()
     }
@@ -29,5 +37,5 @@ export default function useEdit() {
     }
 
 
-    return [handleClickOpen, handleClose, open, updateHandler, deleteHandler]
+    return [handleClickOpen, handleClose, open, updateForm, deleteHandler]
 }

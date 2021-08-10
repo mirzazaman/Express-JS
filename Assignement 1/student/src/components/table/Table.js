@@ -14,7 +14,7 @@ import useTable from './useTable';
 const useStyles = makeStyles({
   root: {
     width: '80%',
-    margin:"auto"
+    margin: "auto"
   },
   container: {
     maxHeight: '100%',
@@ -35,24 +35,24 @@ export default function MainTable() {
               <TableCell>Name</TableCell>
               <TableCell>Class</TableCell>
               <TableCell>Role</TableCell>
-              <TableCell></TableCell>
+              <TableCell>Action</TableCell>
             </TableRow>
           </TableHead>
           <TableBody>
-            {List.map((item)=>{
-              return(
+            {List.map((item) => {
+              return (
                 <TableRow>
                   <TableCell>{item.name}</TableCell>
                   <TableCell>{item.stuClass}</TableCell>
                   <TableCell>{item.role}</TableCell>
-                  <TableCell> <Edit item={item}/>  </TableCell>
+                  <TableCell> <Edit item={item} />  </TableCell>
                 </TableRow>
               )
             })}
           </TableBody>
         </Table>
       </TableContainer>
-            {tableLoading ? <div><center>Loading...</center></div> : null}
+      {tableLoading ? <div><center>Loading...</center></div> : null}
     </Paper>
   );
 }
