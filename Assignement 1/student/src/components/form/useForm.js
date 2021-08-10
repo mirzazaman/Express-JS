@@ -1,8 +1,7 @@
 import { useState } from "react";
 import { useDispatch } from "react-redux";
-import { AddData, UpdateData } from "../../store/actions/Action";
+import { AddData, InputForm, UpdateData } from "../../store/actions/Action";
 import { useSelector } from 'react-redux'
-import { Form } from "../../store/actions/Action";
 
 
 export default function useForm() {
@@ -12,6 +11,7 @@ export default function useForm() {
   const dispatch = useDispatch()
   const openCloseState = useSelector(store => store.updateOpenState)
   const flagState = useSelector(store => store.flagState)
+  const dataForUpdate = useSelector(store => store.dataForUpdate)
 
 
   const handleClickOpen = () => {
@@ -20,7 +20,7 @@ export default function useForm() {
       formOpenState: true
     }
     dispatch(
-      Form(states)
+      InputForm(states)
     )
   };
 
@@ -30,7 +30,7 @@ export default function useForm() {
       formOpenState: false
     }
     dispatch(
-      Form(states)
+      InputForm(states)
     )
   };
 
@@ -58,6 +58,7 @@ export default function useForm() {
     }
   }
 
+
   const updateHandler = () => {
     handleClose()
     if (name.length === 0 || stuClass.length === 0 || role === "Select Role") {
@@ -65,7 +66,7 @@ export default function useForm() {
 
     } else {
       let data = {
-        id: Math.random() * 6000,
+        id: dataForUpdate.id,
         name: name,
         stuClass: stuClass,
         role: role

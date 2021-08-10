@@ -42,7 +42,7 @@ export default function Edit({ item }) {
                                             Delete
                                         </Button>
 
-                                        <Button autoFocus onClick={() => { updateForm(idItem.id) }} color="primary">
+                                        <Button autoFocus onClick={() => { updateForm(idItem) }} color="primary">
                                             Update
                                         </Button>
 

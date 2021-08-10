@@ -1,4 +1,4 @@
-import { ADD_DATA, DELETE_DATA, GET_DATA, UPDATE_DATA, FORM} from "../../constants/Types"
+import { ADD_DATA, DELETE_DATA, GET_DATA, UPDATE_DATA, INPUT_FORM, UPDATE_FORM } from "../../constants/Types"
 import axios from "axios"
 
 export const GetData = (setTableLoading) => async (dispatch) => {
@@ -37,7 +37,7 @@ export const AddData = (data) => async (dispatch) => {
 export const UpdateData = (data) => async (dispatch) => {
 
     try {
-        await axios.put('http://localhost:5000/', { data })
+        // await axios.put('http://localhost:5000/', { data })
 
         dispatch({
             type: UPDATE_DATA,
@@ -52,7 +52,7 @@ export const UpdateData = (data) => async (dispatch) => {
 export const DeleteData = (ID) => async (dispatch) => {
 
     try {
-        await axios.delete('http://localhost:5000/', { ID })
+        // await axios.delete('http://localhost:5000/', { ID })
 
         dispatch({
             type: DELETE_DATA,
@@ -64,10 +64,18 @@ export const DeleteData = (ID) => async (dispatch) => {
     }
 }
 
-export const Form = (states) => {
+export const InputForm = (states) => {
 
     return {
-        type: FORM,
+        type: INPUT_FORM,
         payload: states
+    }
+}
+
+export const UpdateForm = (states, idItem) => {
+
+    return {
+        type: UPDATE_FORM,
+        payload: { states, idItem }
     }
 }

@@ -1,9 +1,10 @@
-import { ADD_DATA, DELETE_DATA, GET_DATA, UPDATE_DATA, FORM } from '../../constants/Types';
+import { ADD_DATA, DELETE_DATA, GET_DATA, UPDATE_DATA, INPUT_FORM, UPDATE_FORM } from '../../constants/Types';
 
 let initialState = {
     newState: [],
+    flagState: false,
     updateOpenState: false,
-    flagState: false
+    dataForUpdate:{}
 }
 
 
@@ -23,8 +24,19 @@ export default function Reducer(state = initialState, action) {
             };
 
         case UPDATE_DATA:
+            let updatedList = state.newState.map((item) => {
+                if (action.payload.id === item.id) {
+                    console.log(item.id);
+                    return { ...action.payload }
+                }
+                else {
+                    return item
+                }
+            })
+
             return {
                 ...state,
+                newState: updatedList
             };
 
         case DELETE_DATA:
@@ -34,11 +46,19 @@ export default function Reducer(state = initialState, action) {
                 newState: filterList
             };
 
-        case FORM:
+        case INPUT_FORM:
             return {
                 ...state,
                 updateOpenState: action.payload.formOpenState,
                 flagState: action.payload.flagState
+            };
+
+        case UPDATE_FORM:
+            return {
+                ...state,
+                dataForUpdate: action.payload.idItem,
+                updateOpenState: action.payload.states.formOpenState,
+                flagState: action.payload.states.flagState
             };
 
         default:
