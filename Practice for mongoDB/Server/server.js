@@ -4,6 +4,7 @@ const AuthRouter = require('./components/auth/AuthRouter')
 const app = express()
 const cors = require('cors')
 const bodyParser = require('body-parser')
+const dbConnection = require("./config/DB")
 
 app.use(bodyParser.urlencoded({
     extended: false,
@@ -11,6 +12,7 @@ app.use(bodyParser.urlencoded({
 app.use(bodyParser.json())
 app.use(cors())
 
+dbConnection()
 // app.get('/get', (req, res) => {
 //     res.status(200)
 //     res.json('outer is working')
