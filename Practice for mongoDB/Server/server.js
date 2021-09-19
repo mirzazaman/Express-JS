@@ -13,10 +13,6 @@ app.use(bodyParser.json())
 app.use(cors())
 
 dbConnection()
-// app.get('/get', (req, res) => {
-//     res.status(200)
-//     res.json('outer is working')
-// })
 
 app.use('/home', HomeRouter)
 app.use('/auth', AuthRouter)
